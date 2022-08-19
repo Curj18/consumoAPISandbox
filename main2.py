@@ -41,7 +41,9 @@ def top_system():
 
     for i in range(0, int(respuesta.json()["totalCount"])):  # o poner 3 en ves d elo ultimo de totalcount
         ip_local = respuesta.json()["imdata"][i]["topSystem"]["attributes"]["address"]
-        print(ip_local)
+        mac_local = respuesta.json()["imdata"][i]["topSystem"]["attributes"]["fabricMAC"]
+        state_local = respuesta.json()["imdata"][i]["topSystem"]["attributes"]["state"]
+        print(ip_local + "|" + mac_local + "|" state_local)
 
 top_system()
 
