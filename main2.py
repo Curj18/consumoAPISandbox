@@ -35,8 +35,9 @@ def top_system():
         "APIC-Cookie":  obtener_token(conf.usuario, conf.clave)
     }
     requests.packages.urllib3.disable_warnings()
+
     try:
-        respuesta= requests.get(sandbox+"/api/class/topSystem.json", headers= cabecera, cookies= galleta, verify=False)
+        respuesta = requests.get(sandbox+"/api/class/topSystem.json", headers= cabecera, cookies= galleta, verify=False)
         print(respuesta.request.method)
         print(respuesta.request.path_url)
         print(respuesta.request.body)
@@ -45,12 +46,14 @@ def top_system():
     except Exception as err:
         print("Error al consumir su API por la conex")
         exit(1)
+
     total_nodos =respuesta.json()["totalCount"]
 
-    for i in range(0, int(respuesta.json()["totalCount"])):  # o poner 3 en ves d elo ultimo de totalcount
+    for i in range(0, total_nodos):  # o poner 3 en ves d elo ultimo de totalcount
         ip_local = respuesta.json()["imdata"][i]["topSystem"]["attributes"]["address"]
         mac_local = respuesta.json()["imdata"][i]["topSystem"]["attributes"]["fabricMAC"]
         state_local = respuesta.json()["imdata"][i]["topSystem"]["attributes"]["state"]
+
         print(ip_local + "|" + mac_local + "|" + state_local)
 
 top_system()
