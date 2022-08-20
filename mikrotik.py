@@ -13,3 +13,4 @@ r = requests.get(url+"/rest/ip/address", auth= (user,clave), verify = False)
 
 
 print(json.dumps(r.json(), indent =2))
+
