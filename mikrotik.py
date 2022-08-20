@@ -16,4 +16,7 @@ r = requests.get(url+"/rest/ip/address/*3", auth= (user,clave), verify = False)
 
 r2 = requests.get(url + "/rest/interface/ether1", auth= (user,clave), verify = False)
 
-print(r2.json()["mac-address"])
+if r2.json()["mac-address"]== "00:0C:29:52:50:80":
+    print("elequipo es la misma wa")
+else:
+    print("alguien cambio el equipo!!!")
